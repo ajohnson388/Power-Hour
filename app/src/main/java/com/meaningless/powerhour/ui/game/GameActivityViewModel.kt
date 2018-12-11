@@ -5,17 +5,18 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.meaningless.powerhour.data.services.GameService
 
+/**
+ * Bridges the logic of the power hour game service to the UI.
+ * */
 class GameActivityViewModel : ViewModel() {
 
-    // region Fields
-    var maxRounds = 60
-    var roundDuration = 60
-
+    // region Properties
     private lateinit var application: Application
     private val _roundLiveData = MutableLiveData<Int>()
     private val onRoundUpdated = object : BroadcastReceiver() {
@@ -23,11 +24,12 @@ class GameActivityViewModel : ViewModel() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if (intent == null) return
             _roundLiveData.value = intent.getIntExtra(GameService.MessageKey.CURRENT_ROUND, 0)
+            Log.d(TAG, "Round changed to ${_roundLiveData.value}")
         }
     }
-    // endregion
 
-    // region Properties
+    var maxRounds = 60
+    var roundDuration = 60
     val roundLiveData: LiveData<Int> get() = _roundLiveData
     // endregion
 
@@ -48,6 +50,7 @@ class GameActivityViewModel : ViewModel() {
         }
 
     private fun startGame() {
+        Log.d(TAG, "Game starting")
         registerReceiver()
         Intent(application, GameService::class.java).also {
             it.putExtra(GameService.IntentKey.GAME_DURATION, maxRounds)
@@ -57,12 +60,14 @@ class GameActivityViewModel : ViewModel() {
     }
 
     private fun endGame() {
+        Log.d(TAG, "Game ending")
         Intent(application, GameService::class.java).also {
             application.stopService(it)
         }
     }
 
     private fun registerReceiver() {
+        Log.d(TAG, "Receiver registered")
         IntentFilter().apply {
             addAction(GameService.IntentKey.NOTIFICATION)
             application.registerReceiver(onRoundUpdated, this)
