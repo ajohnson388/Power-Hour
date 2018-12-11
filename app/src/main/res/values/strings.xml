@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Power Hour</string>
+    <string name="round_number">Round %d</string>
+</resources>
