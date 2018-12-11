@@ -62,8 +62,13 @@ class GameActivity : AppCompatActivity() {
 
     // region Listeners
     private val onRoundChanged = Observer<Int> {
-        if (it == 0) resetClock() else startTimer()
-        roundTextView.text = getString(R.string.round_number, it)
+        if (it == 0) {
+            resetClock()
+            roundTextView.text = getString(R.string.round_placeholder)
+        } else {
+            startTimer()
+            roundTextView.text = getString(R.string.round_number, it)
+        }
     }
 
     private fun onStartTapped(view: View) {
