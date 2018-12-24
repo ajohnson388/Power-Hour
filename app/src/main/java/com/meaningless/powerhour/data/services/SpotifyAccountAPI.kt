@@ -1,7 +1,8 @@
 package com.meaningless.powerhour.data.services
 
 import com.meaningless.powerhour.BuildConfig
-import com.meaningless.powerhour.data.models.SpotifyLoginResponse
+import com.meaningless.powerhour.data.models.SpotifyAuthorizationResponse
+import com.meaningless.powerhour.data.models.SpotifyTokenResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -16,7 +17,7 @@ interface SpotifyAccountAPI {
         &scope=${BuildConfig.SPOTIFY_SCOPES}
         """
     )
-    fun requestAuthorization(): Call<SpotifyLoginResponse>
+    fun requestAuthorization(): Call<SpotifyAuthorizationResponse>
 
     @Headers("Authorization: Basic ${BuildConfig.SPOTIFY_AUTH_TOKEN}")
     @POST(
@@ -26,5 +27,5 @@ interface SpotifyAccountAPI {
         &redirect_uri=${BuildConfig.SPOTIFY_REDIRECT_URI}
         """
     )
-    fun requestTokens(@Query("code") code: String): Call<SpotifyLoginResponse>
+    fun requestTokens(@Query("code") code: String): Call<SpotifyTokenResponse>
 }
