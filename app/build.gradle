@@ -17,6 +17,7 @@ android {
         buildConfigField "String", "SPOTIFY_CLIENT_ID", "\"d98ba0369f7843e285bc90f14e4132be\""
         buildConfigField "String", "SPOTIFY_DEFAULT_PLAYLIST", "\"spotify:user:spotify:playlist:37i9dQZF1DWTJ7xPn4vNaz\""
         buildConfigField "String", "SPOTIFY_ACCOUNTS_URL", "\"https://accounts.spotify.com/\""
+        buildConfigField "String", "SPOTIFY_SCOPES", "\"playlist-read-private user-read-currently-playing app-remote-control streaming playlist-read-collaborative\""
     }
 
     buildTypes {
@@ -55,5 +56,6 @@ dependencies {
 
     /* Networking */
     implementation "com.squareup.retrofit2:retrofit:2.5.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.5.0"
     implementation "com.google.code.gson:gson:2.8.5"
 }
