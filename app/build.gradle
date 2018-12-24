@@ -2,6 +2,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+def secretsFile = rootProject.file("secrets.properties")
+def secretsProperties = new Properties()
+secretsProperties.load(new FileInputStream(secretsFile))
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -14,10 +18,11 @@ android {
         targetSdkVersion 28
 
         buildConfigField "String", "SPOTIFY_REDIRECT_URI", "\"com.meaningless.powerhour://callback\""
-        buildConfigField "String", "SPOTIFY_CLIENT_ID", "\"d98ba0369f7843e285bc90f14e4132be\""
         buildConfigField "String", "SPOTIFY_DEFAULT_PLAYLIST", "\"spotify:user:spotify:playlist:37i9dQZF1DWTJ7xPn4vNaz\""
         buildConfigField "String", "SPOTIFY_ACCOUNTS_URL", "\"https://accounts.spotify.com/\""
         buildConfigField "String", "SPOTIFY_SCOPES", "\"playlist-read-private user-read-currently-playing app-remote-control streaming playlist-read-collaborative\""
+        buildConfigField "String", "SPOTIFY_CLIENT_ID", secretsProperties["spotifyClientId"]
+        buildConfigField "String", "SPOTIFY_AUTH_TOKEN", secretsProperties["spotifyAuthToken"]
     }
 
     buildTypes {
