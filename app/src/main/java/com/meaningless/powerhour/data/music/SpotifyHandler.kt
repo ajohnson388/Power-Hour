@@ -2,6 +2,7 @@ package com.meaningless.powerhour.data.music
 
 import android.content.Context
 import android.util.Log
+import com.meaningless.powerhour.BuildConfig
 import com.meaningless.powerhour.data.database.DataManager
 import com.spotify.android.appremote.api.SpotifyAppRemote
 import com.spotify.android.appremote.api.ConnectionParams
@@ -18,15 +19,15 @@ class SpotifyHandler(private val context: Context) : MusicHandler, Connector.Con
     // region MusicHandler
     override fun connect() {
         if (isConnected) return
-        val connectionParams = ConnectionParams.Builder(CLIENT_ID)
-            .setRedirectUri(REDIRECT_URI)
+        val connectionParams = ConnectionParams.Builder(BuildConfig.SPOTIFY_CLIENT_ID)
+            .setRedirectUri(BuildConfig.SPOTIFY_REDIRECT_URI)
             .showAuthView(true)
             .build()
         SpotifyAppRemote.connect(context, connectionParams, this)
     }
 
     override fun start() {
-        val startUri = DataManager.getPlayListUri(context) ?: DEFAULT_PLAY_LIST_URI
+        val startUri = DataManager.getPlayListUri(context) ?: BuildConfig.SPOTIFY_DEFAULT_PLAYLIST
         appRemote?.playerApi?.play(startUri)
     }
 
@@ -61,10 +62,6 @@ class SpotifyHandler(private val context: Context) : MusicHandler, Connector.Con
 
     companion object {
         private val TAG = SpotifyHandler::class.java.simpleName
-        private const val CLIENT_ID = "d98ba0369f7843e285bc90f14e4132be"
-        private const val REDIRECT_URI = "com.meaningless.powerhour://callback"
-        private const val DEFAULT_PLAY_LIST_URI =
-            "spotify:user:spotify:playlist:37i9dQZF1DWTJ7xPn4vNaz"
     }
     // endregion
 }

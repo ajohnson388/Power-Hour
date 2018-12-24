@@ -1,39 +1,59 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.meaningless.powerhour"
-        minSdkVersion 21
-        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        minSdkVersion 21
+        targetSdkVersion 28
+
+        buildConfigField "String", "SPOTIFY_REDIRECT_URI", "\"com.meaningless.powerhour://callback\""
+        buildConfigField "String", "SPOTIFY_CLIENT_ID", "\"d98ba0369f7843e285bc90f14e4132be\""
+        buildConfigField "String", "SPOTIFY_DEFAULT_PLAYLIST", "\"spotify:user:spotify:playlist:37i9dQZF1DWTJ7xPn4vNaz\""
+        buildConfigField "String", "SPOTIFY_ACCOUNTS_URL", "\"https://accounts.spotify.com/\""
     }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
         }
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    /* UI */
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
-    testImplementation 'junit:junit:4.12'
     implementation 'com.google.android.material:material:1.0.0-beta01'
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-    compile project(':spotify-app-remote')
-    compile "com.google.code.gson:gson:2.8.5"
-    compile 'com.spotify.android:auth:1.1.0'
+
+    /* Architecture */
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "android.arch.lifecycle:extensions:1.1.1"
     implementation "android.arch.lifecycle:viewmodel:1.1.1"
+
+    /* Testing */
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    /* Music */
+    implementation project(':spotify-app-remote')
+    implementation 'com.spotify.android:auth:1.1.0'
+
+    /* Networking */
+    implementation "com.squareup.retrofit2:retrofit:2.5.0"
+    implementation "com.google.code.gson:gson:2.8.5"
 }
