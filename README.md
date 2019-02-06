@@ -1,6 +1,6 @@
 # Power Hour
 
-![Power Hour](https://github.com/ajohnson388/power-hour/blob/master/images/PowerHour-Logo.png)
+<img src="https://github.com/ajohnson388/power-hour/blob/master/images/PowerHour-Logo.png" height="125" width="125" />
 
 > A drinking game where the players must take a shot of beer every minute for an hour.
 
