@@ -33,6 +33,10 @@
             android:name="com.spotify.sdk.android.authentication.LoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
+        <activity
+            android:name=".ui.searchplaylists.SearchActivity"
+            android:theme="@style/AppThemeNoActionBar"/>
+
         <service
             android:name=".data.services.GameService"
             android:exported="false" />

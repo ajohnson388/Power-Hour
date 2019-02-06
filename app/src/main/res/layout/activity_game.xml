@@ -9,53 +9,57 @@
 
     <ImageView
         android:id="@+id/clockImageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="@dimen/margin_edge"
+        android:layout_width="@dimen/track_max_width"
+        android:layout_height="@dimen/track_max_width"
+        android:layout_marginTop="@dimen/margin_edge_large"
         android:background="@drawable/clock"
+        android:contentDescription="@string/content_clock"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_max="10dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/roundTextView"
+        style="@style/DialogTitleTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
         android:text="@string/round_placeholder"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintBottom_toTopOf="@id/startButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.608" />
+        app:layout_constraintTop_toBottomOf="@id/clockImageView" />
 
-    <EditText
-        android:id="@+id/uriEditTextView"
+    <include
+        android:id="@+id/trackView"
+        layout="@layout/partial_track_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="24dp"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:hint="Enter Spotify URI ..."
-        android:imeOptions="actionDone"
-        android:inputType="text"
-        android:maxLines="1"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/playlistButton"
+        android:layout_marginStart="@dimen/margin_edge_large"
+        android:layout_marginEnd="@dimen/margin_large"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/startButton"
+        app:layout_constraintWidth_max="@dimen/track_max_width" />
+
+    <TextView
+        android:id="@+id/selectedPlaylistTextView"
+        style="@style/SingleLineText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_large"
+        android:text="@string/playlist_current_placeholder"
+        app:layout_constraintBottom_toBottomOf="@id/playlistButton"
+        app:layout_constraintLeft_toLeftOf="@id/trackView"
         app:layout_constraintRight_toLeftOf="@id/playlistButton"
-        tools:layout_editor_absoluteX="187dp"
-        tools:layout_editor_absoluteY="363dp" />
+        app:layout_constraintTop_toTopOf="@id/playlistButton" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="@dimen/margin_edge_large"
+        android:layout_marginBottom="@dimen/margin_extra_large"
         android:src="@drawable/ic_play_arrow_black_24dp"
         app:layout_constraintBottom_toTopOf="@id/playlistButton"
         app:layout_constraintRight_toRightOf="parent" />
@@ -64,8 +68,8 @@
         android:id="@+id/playlistButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginEnd="@dimen/margin_edge_large"
+        android:layout_marginBottom="@dimen/margin_edge_large"
         android:src="@drawable/ic_playlist_add_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />

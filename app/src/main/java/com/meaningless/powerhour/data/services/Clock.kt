@@ -1,25 +1,24 @@
 package com.meaningless.powerhour.data.services
 
 import android.os.CountDownTimer
-import com.meaningless.powerhour.data.models.Intervals
+import com.meaningless.powerhour.data.music.common.models.Intervals
+import java.lang.ref.WeakReference
 
-class Clock : CountDownTimer(Intervals.ONE_MINUTE, Intervals.ONE_MINUTE) {
+class Clock(duration: Long = Intervals.ONE_MINUTE) : CountDownTimer(duration, duration) {
 
-    // region Fields
-    var listener: Listener? = null
-    // endregion
+    private var listener: WeakReference<Listener>? = null
 
-    // region Count Down Timer
+    fun setListener(listener: Listener) {
+        this.listener = WeakReference(listener)
+    }
+
     override fun onFinish() {
-        listener?.onMinutePassed()
+        listener?.get()?.onTimerFinished()
     }
 
     override fun onTick(remainingMilliseconds: Long) {}
-    // endregion
 
-    // region Associated Types
     interface Listener {
-        fun onMinutePassed()
+        fun onTimerFinished()
     }
-    // endregion
 }

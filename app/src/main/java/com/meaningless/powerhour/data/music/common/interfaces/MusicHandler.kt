@@ -1,12 +1,14 @@
-package com.meaningless.powerhour.data.music
+package com.meaningless.powerhour.data.music.common.interfaces
+
+import android.content.Context
 
 interface MusicHandler {
 
     // region Methods
-    fun start()
-    fun skip()
+    fun connect(context: Context)
+    fun start(context: Context)
+    fun skip(context: Context)
     fun stop()
-    fun connect()
     fun disconnect()
     // endregion
 

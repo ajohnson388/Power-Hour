@@ -2,4 +2,27 @@
     <string name="app_name">Power Hour</string>
     <string name="round_number">Round %d</string>
     <string name="round_placeholder">Ready?</string>
+    <string name="track_name_placeholder">- - - -</string>
+    <string name="track_artist_placeholder">- - - -</string>
+
+    <string name="playlist_current_placeholder">No playlist selected</string>
+    <string name="playlist_current">Playlist \u2014 %s</string>
+    <string name="playlist_unknown">Unknown playlist</string>
+    <string name="playlist_90">90\'s</string>
+    <string name="playlist_80">80\'s</string>
+    <string name="playlist_70">70\'s</string>
+    <string name="playlist_custom">+</string>
+    <string name="playlist_header">Select playlist</string>
+
+    <string name="dialog_authentication_title">Authorization required</string>
+    <string name="dialog_authentication_description">Authorization to use your Spotify account is required to choose a playlist and play music.</string>
+    <string name="dialog_okay">Continue</string>
+    <string name="dialog_cancel">Dismiss</string>
+
+    <string name="sheet_item_height">56dp</string>
+
+    <string name="search_placeholder">Type to search&#8230;</string>
+
+    <string name="content_clock">Timer for power hour.</string>
+    <string name="content_playlist_icon">Icon for the playlist.</string>
 </resources>

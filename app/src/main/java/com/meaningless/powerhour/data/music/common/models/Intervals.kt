@@ -1,4 +1,4 @@
-package com.meaningless.powerhour.data.models
+package com.meaningless.powerhour.data.music.common.models
 
 object Intervals {
 
