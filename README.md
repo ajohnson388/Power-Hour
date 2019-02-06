@@ -1,5 +1,7 @@
 # Power Hour
 
+![Power Hour](https://github.com/ajohnson388/power-hour/blob/master/images/PowerHour-Logo.png)
+
 > A drinking game where the players must take a shot of beer every minute for an hour.
 
 [![Kotlin Version][kotlin-image]][kotlin-url]
